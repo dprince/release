@@ -113,6 +113,9 @@ function build_push_operator_images {
   oc start-build ${OPERATOR} --from-dir . -F
   check_build_result ${OPERATOR}
 
+  #FIXME(dprince): need creds to do this
+  /usr/bin/podman login registry.redhat.io -u *** -p *** --verbose
+
   GOWORK='' make bundle
 
   # if it is the metaoperator and any extra dependant bundles exist build and push them here
